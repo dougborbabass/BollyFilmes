@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.menu_atualizar:
-                Toast.makeText(this, "Atualizando", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Atualizando...", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
