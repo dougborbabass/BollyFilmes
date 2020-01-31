@@ -3,15 +3,20 @@ package com.douglasborba.bollyfilmes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String KEY_FILME = "FILME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView lista = findViewById(R.id.list_filmes);
 
-        ArrayList<ItemFilme> arrayList = new ArrayList<>();
+        final ArrayList<ItemFilme> arrayList = new ArrayList<>();
         arrayList.add(new ItemFilme("Homem aranha 1", "Super herói", "76/01/2020", 3));
         arrayList.add(new ItemFilme("Homem aranha 2", "Super herói", "76/01/2020", 3.5f));
         arrayList.add(new ItemFilme("Homem aranha 3", "Super herói", "76/01/2020", 4));
@@ -29,6 +34,18 @@ public class MainActivity extends AppCompatActivity {
 
         FilmesAdapter adapter = new FilmesAdapter(this, arrayList);
         lista.setAdapter(adapter);
+
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                ItemFilme itemFilme = arrayList.get(i);
+
+                Intent intent = new Intent(MainActivity.this,FilmeDetalheActivity.class);
+                intent.putExtra(KEY_FILME,itemFilme);
+                startActivity(intent);
+            }
+        });
 
     }
 

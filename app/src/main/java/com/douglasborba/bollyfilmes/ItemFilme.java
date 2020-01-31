@@ -1,8 +1,9 @@
 package com.douglasborba.bollyfilmes;
 
+import java.io.Serializable;
 import java.net.URI;
 
-public class ItemFilme {
+public class ItemFilme implements Serializable {
 
     private String id;
     private String titulo;
