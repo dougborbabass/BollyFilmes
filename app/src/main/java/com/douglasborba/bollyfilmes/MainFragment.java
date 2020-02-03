@@ -53,10 +53,9 @@ public class MainFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 ItemFilme itemFilme = arrayList.get(i);
-
-                Intent intent = new Intent(getContext(), FilmeDetalheActivity.class);
-                intent.putExtra(MainActivity.KEY_FILME, itemFilme);
-                startActivity(intent);
+                callback callback = (MainFragment.callback) getActivity();
+                assert callback != null;
+                callback.onItemSelected(itemFilme);
             }
         });
 
@@ -78,6 +77,10 @@ public class MainFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public interface callback {
+        void onItemSelected(ItemFilme itemFilme);
     }
 
 }
