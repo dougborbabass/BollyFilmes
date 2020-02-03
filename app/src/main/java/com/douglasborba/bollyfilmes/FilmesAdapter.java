@@ -53,8 +53,8 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
             case VIEW_TYPE_DESTAQUE: {
                 itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_filme_destaque, parent, false);
 
-                TextView desc = itemView.findViewById(R.id.item_desc_poster);
-                desc.setText(filme.getDescricao());
+                TextView titulo = itemView.findViewById(R.id.item_titulo);
+                titulo.setText(filme.getTitulo());
 
                 RatingBar avaliacao = itemView.findViewById(R.id.item_avaliacao);
                 avaliacao.setRating(filme.getAvaliacao());

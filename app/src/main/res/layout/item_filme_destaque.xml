@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
-    android:orientation="vertical">
+    android:background="@android:color/black">
 
     <ImageView
-        android:id="@+id/item_poster"
+        android:id="@+id/item_capa"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6"
-        android:scaleType="fitCenter"
-        android:src="@drawable/poster">
-
-    </ImageView>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/capa" />
 
     <TextView
-        android:id="@+id/item_desc_poster"
+        android:id="@+id/item_titulo"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/item_capa"
+        android:background="#D8000000"
+        android:gravity="center"
         android:padding="5dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@android:color/white">
+        android:text="Capitão América"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 
-    </TextView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/item_capa"
+        android:layout_centerHorizontal="true"
+        android:background="#D8000000"
+        android:padding="5dp">
 
-    <RatingBar
-        android:id="@id/item_avaliacao"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="2"
-        android:numStars="5"
-        android:rating="3"
-        android:layout_marginBottom="10dp">
+        <RatingBar
+            android:id="@+id/item_avaliacao"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:numStars="5"
+            android:rating="3" />
 
-    </RatingBar>
+    </FrameLayout>
 
-</LinearLayout>
+</RelativeLayout>

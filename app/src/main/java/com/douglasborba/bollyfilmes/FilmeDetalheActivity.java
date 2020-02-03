@@ -29,6 +29,7 @@ public class FilmeDetalheActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putSerializable(MainActivity.KEY_FILME, itemFilme);
         filmeDetalheFragment.setArguments(bundle);
+        fragmentTransaction.add(R.id.fragment_filme_detalhe, filmeDetalheFragment);
 
         fragmentTransaction.commit();
 
