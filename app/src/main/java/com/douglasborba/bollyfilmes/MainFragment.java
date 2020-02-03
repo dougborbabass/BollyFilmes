@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -22,6 +23,12 @@ import java.util.ArrayList;
 import java.util.zip.Inflater;
 
 public class MainFragment extends Fragment {
+
+    private int posicaoItem = ListView.INVALID_POSITION;
+    private static final String KEY_POSICAO = "SELECIONADO";
+    private ListView lista;
+    private boolean useFilmeDestaque = false;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +43,7 @@ public class MainFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        ListView lista = view.findViewById(R.id.list_filmes);
+        lista = view.findViewById(R.id.list_filmes);
 
         final ArrayList<ItemFilme> arrayList = new ArrayList<>();
         arrayList.add(new ItemFilme("Homem aranha 1", "Super herói", "76/01/2020", 3));
@@ -47,7 +54,7 @@ public class MainFragment extends Fragment {
 
         FilmesAdapter adapter = new FilmesAdapter(getContext(), arrayList);
         lista.setAdapter(adapter);
-
+        adapter.setUseFilmeDestaque(useFilmeDestaque);
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -56,10 +63,35 @@ public class MainFragment extends Fragment {
                 callback callback = (MainFragment.callback) getActivity();
                 assert callback != null;
                 callback.onItemSelected(itemFilme);
+                posicaoItem = i;
             }
         });
 
+        if (savedInstanceState != null && savedInstanceState.containsKey(KEY_POSICAO)){
+            posicaoItem = savedInstanceState.getInt(KEY_POSICAO);
+        }
+
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+
+        if(posicaoItem != ListView.INVALID_POSITION){
+            outState.putInt(KEY_POSICAO, posicaoItem);
+        }
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if(posicaoItem != ListView.INVALID_POSITION && lista != null){
+            lista.smoothScrollToPosition(posicaoItem);
+        }
+
     }
 
     @Override
@@ -81,6 +113,10 @@ public class MainFragment extends Fragment {
 
     public interface callback {
         void onItemSelected(ItemFilme itemFilme);
+    }
+
+    public void setUseFilmeDestaque(boolean useFilmeDestaque) {
+        this.useFilmeDestaque = useFilmeDestaque;
     }
 
 }

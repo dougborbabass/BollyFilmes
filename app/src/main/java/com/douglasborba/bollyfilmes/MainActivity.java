@@ -39,6 +39,11 @@ public class MainActivity extends AppCompatActivity implements MainFragment.call
         } else {
             isTablet = false;
         }
+
+        MainFragment mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.main_fragment);
+        assert mainFragment != null;
+        mainFragment.setUseFilmeDestaque(!isTablet);
+
     }
 
     @Override
