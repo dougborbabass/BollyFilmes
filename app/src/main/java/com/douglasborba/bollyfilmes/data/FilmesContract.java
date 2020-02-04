@@ -11,7 +11,7 @@ public class FilmesContract {
     public static abstract class FilmeEntry implements BaseColumns{
 
         public static final String TABLE_NAME = "filmes";
-        
+
         public static final String _ID = "_id";
         public static final String COLUMN_TITULO = "titulo";
         public static final String COLUMN_DESCRICAO = "descricao";
