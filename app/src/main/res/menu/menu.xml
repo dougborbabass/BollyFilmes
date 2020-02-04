@@ -4,7 +4,15 @@
 
     <item
         android:id="@+id/menu_atualizar"
+        android:orderInCategory="100"
         android:title="Atualizar"
+        app:showAsAction="never">
+
+    </item>
+
+    <item
+        android:id="@+id/menu_config"
+        android:title="Configurações"
         app:showAsAction="never"
         android:orderInCategory="100">
     </item>

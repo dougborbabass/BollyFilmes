@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,11 @@ public class FilmeDetalheFragment extends Fragment {
 
         ImageView capa = view.findViewById(R.id.item_capa);
         new DownloadImageTask(capa).execute(itemFilme.getCapaPath());
+
+        if (view.findViewById(R.id.item_poster) != null) {
+            ImageView poster = view.findViewById(R.id.item_poster);
+            new DownloadImageTask(poster).execute(itemFilme.getPosterPath());
+        }
 
         return view;
     }
