@@ -60,6 +60,9 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
                 RatingBar avaliacao = itemView.findViewById(R.id.item_avaliacao);
                 avaliacao.setRating(filme.getAvaliacao());
 
+                ImageView capa = itemView.findViewById(R.id.item_capa);
+                new DownloadImageTask(capa).execute(filme.getCapaPath());
+
                 break;
             }
             case VIEW_TYPE_ITEM: {
@@ -79,6 +82,8 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
                 holder.desc.setText(filme.getDescricao());
                 holder.dataLancamento.setText(filme.getDataLancamento());
                 holder.avaliacao.setRating(filme.getAvaliacao());
+
+                new DownloadImageTask(holder.poster).execute(filme.getPosterPath());
 
                 break;
             }
